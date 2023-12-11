@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.error-page {
+    padding-left: 10px;
+}
+.error-page p {
+    color: brown;
+}
+
+/* Hide the default scrollbar */
+.chatbox-container {
+    overflow: hidden;
+  }
+  
+  /* Style the custom scrollbar for webkit browsers (Chrome, Safari) */
+  .chatbox {
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: transparent transparent; /* Firefox */
+  
+    /* For webkit browsers (Chrome, Safari) */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: thin;  /* Firefox */
+  }
+  
+  /* For webkit browsers (Chrome, Safari) - scrollbar styles */
+  .chatbox::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+
+  
+  .chatbox::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 2px solid transparent;
+  }
+  
+  .chatbox::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+    border-color: #555;
+  }
+  
+
+  

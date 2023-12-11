@@ -1,0 +1,29 @@
+.summary-container{
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+  }
+  .main-box-conatiner{
+    display: flex;
+    flex-direction: column;
+  }
+  .ai-sum-box{
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin-right: 30px;
+   
+    padding: 20px;
+    margin-bottom: 5px;
+    color: white;
+    border-radius: 8px;
+    border-bottom-right-radius: 0px;
+  }
+.summary-chats{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
