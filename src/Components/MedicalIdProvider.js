@@ -13,6 +13,7 @@ const MedicalIdProvider = ({ children }) => {
     setValidMedicalId(id);
   };
 
+  
   return (
     <MedicalIdContext.Provider value={{ validMedicalId, setMedicalId }}>
       {children}
