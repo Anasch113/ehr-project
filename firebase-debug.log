@@ -1,0 +1,114 @@
+[debug] [2023-12-12T19:26:43.703Z] ----------------------------------------------------------------------
+[debug] [2023-12-12T19:26:43.705Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-12-12T19:26:43.706Z] CLI Version:   13.0.1
+[debug] [2023-12-12T19:26:43.706Z] Platform:      win32
+[debug] [2023-12-12T19:26:43.707Z] Node Version:  v18.16.0
+[debug] [2023-12-12T19:26:43.708Z] Time:          Wed Dec 13 2023 00:26:43 GMT+0500 (Pakistan Standard Time)
+[debug] [2023-12-12T19:26:43.708Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-12T19:26:43.716Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-12T19:26:43.717Z] > authorizing via signed-in user (anaschaudry2002@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Clients Projects\OpenAi-Inegration\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-12-12T19:27:04.918Z] > refreshing access token with scopes: []
+[debug] [2023-12-12T19:27:04.922Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-12-12T19:27:04.922Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-12-12T19:27:05.634Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-12-12T19:27:05.635Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-12-12T19:27:05.665Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-12-12T19:27:06.632Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2023-12-12T19:27:06.633Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2023-12-12T19:27:58.374Z] ----------------------------------------------------------------------
+[debug] [2023-12-12T19:27:58.377Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-12-12T19:27:58.377Z] CLI Version:   13.0.1
+[debug] [2023-12-12T19:27:58.378Z] Platform:      win32
+[debug] [2023-12-12T19:27:58.378Z] Node Version:  v18.16.0
+[debug] [2023-12-12T19:27:58.379Z] Time:          Wed Dec 13 2023 00:27:58 GMT+0500 (Pakistan Standard Time)
+[debug] [2023-12-12T19:27:58.379Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-12T19:27:58.388Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-12T19:27:58.388Z] > authorizing via signed-in user (anaschaudry2002@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Clients Projects\OpenAi-Inegration\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2023-12-12T19:29:35.345Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-12T19:29:35.345Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"ehr-project","name":"ehr-project"}
+[debug] [2023-12-12T19:29:37.294Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2023-12-12T19:29:37.294Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2023-12-12T19:29:37.976Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID ehr-project. Please try again with a unique project ID.
+[debug] [2023-12-12T19:30:03.961Z] ----------------------------------------------------------------------
+[debug] [2023-12-12T19:30:03.963Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-12-12T19:30:03.964Z] CLI Version:   13.0.1
+[debug] [2023-12-12T19:30:03.964Z] Platform:      win32
+[debug] [2023-12-12T19:30:03.964Z] Node Version:  v18.16.0
+[debug] [2023-12-12T19:30:03.966Z] Time:          Wed Dec 13 2023 00:30:03 GMT+0500 (Pakistan Standard Time)
+[debug] [2023-12-12T19:30:03.966Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-12T19:30:03.974Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-12T19:30:03.975Z] > authorizing via signed-in user (anaschaudry2002@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Clients Projects\OpenAi-Inegration\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2023-12-12T19:31:34.261Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-12T19:31:34.261Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"ehr_project123456","name":"ehr_project123456"}
+[debug] [2023-12-12T19:31:35.898Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2023-12-12T19:31:35.899Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id contains invalid characters"},{"field":"display_name","description":"project display name contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2023-12-12T19:31:36.554Z] FirebaseError: HTTP Error: 400, Request contains an invalid argument.
+    at responseToError (C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\dELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.

@@ -336,7 +336,7 @@ const extractSummaryFromResponse = (transformedMessages) => {
                 </button>
               </div>
             </div>
-            {isend &&
+            {
               messages.map((message) => (
                 
                 <div
