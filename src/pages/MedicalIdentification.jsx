@@ -8,18 +8,43 @@ const MedicalIdVerification = () => {
   const [error, setError] = useState("");
   const { setMedicalId: setValidMedicalId } = useMedicalId();
   const navigate = useNavigate();
-  const isMedicalIdValid = (id) => {
-    return id === "2023-11-29308";
+
+  // Function to fetch patient_id
+  const fetchPatientId = async () => {
+    try {
+      if (medicalId) {
+        const response = await fetch(
+          `https://api.pamojapanafrica.com/patient_verification.php?patient_id=${encodeURIComponent(
+            medicalId
+          )}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`Server responded with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Response data:", data);
+
+        if (data.status === "true") {
+          // Patient is verified, navigate to chat page
+          setValidMedicalId(medicalId);
+          navigate("/chat");
+        } else {
+          // Patient is not verified, show error message
+          setError("Invalid Medical ID. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching patient_id:", error.message);
+      setError("Failed to fetch patient_id. Please try again.");
+    }
   };
 
-
+  // Click event handler for the "Continue" button
   const handleContinue = () => {
-    if (isMedicalIdValid(medicalId)) {
-      setValidMedicalId(medicalId);
-      navigate("/chat");
-    } else {
-      setError("Invalid Medical ID. Please try again.");
-    }
+    // Call the function to fetch patient_id when the button is clicked
+    fetchPatientId();
   };
 
   return (
