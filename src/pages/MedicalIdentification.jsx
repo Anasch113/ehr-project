@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 import { useMedicalId } from "../Components/MedicalIdProvider";
@@ -46,6 +46,19 @@ const MedicalIdVerification = () => {
     // Call the function to fetch patient_id when the button is clicked
     fetchPatientId();
   };
+
+
+
+// Code to check whether the url contains MRN or not , If present set it in medicalId.
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mrnFromUrl = urlParams.get('unin');
+
+
+    if (mrnFromUrl) {
+      setMedicalId(mrnFromUrl);
+    }
+  }, []);
 
   return (
     <div className="flex flex-col py-20 bg-blue-100 items-center min-h-screen">
