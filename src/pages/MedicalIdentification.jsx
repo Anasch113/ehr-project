@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 import { useMedicalId } from "../Components/MedicalIdProvider";
@@ -8,19 +8,57 @@ const MedicalIdVerification = () => {
   const [error, setError] = useState("");
   const { setMedicalId: setValidMedicalId } = useMedicalId();
   const navigate = useNavigate();
-  const isMedicalIdValid = (id) => {
-    return id === "2023-11-29308";
-  };
 
+  // Function to fetch patient_id
+  const fetchPatientId = async () => {
+    try {
+      if (medicalId) {
+        const response = await fetch(
+          `https://api.pamojapanafrica.com/patient_verification.php?patient_id=${encodeURIComponent(
+            medicalId
+          )}`
+        );
 
-  const handleContinue = () => {
-    if (isMedicalIdValid(medicalId)) {
-      setValidMedicalId(medicalId);
-      navigate("/chat");
-    } else {
-      setError("Invalid Medical ID. Please try again.");
+        if (!response.ok) {
+          throw new Error(`Server responded with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Response data:", data);
+
+        if (data.status === "true") {
+          // Patient is verified, navigate to chat page
+          setValidMedicalId(medicalId);
+          navigate("/chat");
+        } else {
+          // Patient is not verified, show error message
+          setError("Invalid Medical ID. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching patient_id:", error.message);
+      setError("Failed to fetch patient_id. Please try again.");
     }
   };
+
+  // Click event handler for the "Continue" button
+  const handleContinue = () => {
+    // Call the function to fetch patient_id when the button is clicked
+    fetchPatientId();
+  };
+
+
+
+// Code to check whether the url contains MRN or not , If present set it in medicalId.
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mrnFromUrl = urlParams.get('unin');
+
+
+    if (mrnFromUrl) {
+      setMedicalId(mrnFromUrl);
+    }
+  }, []);
 
   return (
     <div className="flex flex-col py-20 bg-blue-100 items-center min-h-screen">

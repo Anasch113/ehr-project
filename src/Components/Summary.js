@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import "../Styles/summary.css"
 const Summary = () => {
     const location = useLocation();
     const summary = JSON.parse(location.state?.summary || '{}');
+
+
+  //  useEffect(()=>{
+  //   sendSummaryToAPI(summary)
+  //  }, [summary])
+   
   return (
     <div className='summary-container'>
       <h2  className="py-6 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400 text-center text-4xl ">Summary</h2>
