@@ -13,6 +13,7 @@ import OpenAI from "openai";
 import { useMedicalId } from "./MedicalIdProvider";
 import { useNavigate } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 
 const openai = new OpenAI({
@@ -32,6 +33,8 @@ function ChatApp() {
   const [isend, setIsEnd] = useState(false); // for rendering messages at the end
   const [summaryData, setSummaryData] = useState("")
   const chatContainerRef = useRef(null);
+  const location = useLocation();
+  
   
   const synth = window.speechSynthesis;
 
@@ -200,7 +203,7 @@ function ChatApp() {
     // // Extracting the response and summary
     const response = completion.choices[0].message.content;
     const summary = extractSummaryFromResponse(transformedMessages);
-    
+    console.log("Response: ", response);
     simulateResponse(response);
 
     setTranscript("");
@@ -239,7 +242,7 @@ const extractSummaryFromResponse = (transformedMessages) => {
     // Second Call for summary
     const abstract =
     "You will act as a Human Nurse Pro, a Professional nurse that will be asking the below predetermined questions from each patient to know about there health. Ask the question one by one and wait until the patient answers each of the questions before you proceed to other. After the introduction 'Hello, welcome to EHR Nurse Assistant, how are you feeling today' then once the patient reply your next reply should start asking the question given below. the questions are: 1. What is the main reason you will be seeing the doctor today2. Tell us as much as you can about the current problem. Let the user replied.3. What other medical problems do you have for which you have to take medications? Let the user replied.4. Have you had any surgeries? If so, tell me about the surgeries and dates or years if you can. Let the user replied.5. Are you allergic to any medicines or foods6. Are you married, single, divorced or separated?7. Do you smoke? if so how much?8. Do you drink alcohol? if so how much?9. Do you use any street drugs? if so which one and for how long?10. Do you take any medications on an ongoing basis? if yes, please state the names and the doses?11. What medical problems if any does your father suffer from?12. What medical problems if any does your mother suffer from?13. What medical problems if any do your sibling suffer from?14. Are you a woman? If yes, how many times have you been pregnant?15. if yes How many children do you have.16. if yes How many miscarriages or abortions have you had.17. Is there anything else you would like your doctor to know about you or your medical condition? Note: Make sure you are the one asking the questions. And never repeat any question that is answered, Becareful in detecting questions that is already answered";;
-    const command =
+    const command = 
       "Create a JSON summary of the medical consultation based on user response given in the previous chat. Print the user response according to these following questions 1. a AI: What is the main reason you will be seeing the doctor today. b. (print: Presenting complaints 2. Tell us as much as you can about the current problem. Print: History of presenting complaints 3. What other medical problems do you have for which you have to take medications? Print: History of presenting complaints 4. Have you had any surgeries? If so, tell me about the surgeries and dates or years if you can. Print: Past surgical history 5. Are you allergic to any medicines or foods Print: Allergies 6. Are you married, single, divorced or separated? Print: Marital history 7. Do you smoke? if so how much? Print: Smoking history 8. Do you drink alcohol? if so how much? a. Print: Alcohol use: 9. Do you use any street drugs? if so which one and for how long? a. Use of illicit drugs: 10. Do you take any medications on an ongoing basis? if yes, please state the names and the doses a. Print: Medications b. 11. What medical problems if any does your father suffer from? a. Father’s medical history 12. What medical problems if any does your mother suffer from? a. Mother’s medical history 13. What medical problems if any do your sibling suffer from? a. Other social history 14. Are you a woman? If yes, how many times have you been pregnant? a. Number of pregnancies 15. Are you a woman? if yes How many children do you have. a. Number of living children 16. Are you a woman? if yes How many miscarriages or abortions have you had. How many miscarriages 17. Is there anything else you would like your doctor to know about you or your medical condition? Print: other relevant medical history. And please print the N/A if the user not replies for the specific question. ";
     handleVoiceInput("off");
     const Messages = [
@@ -250,12 +253,13 @@ const extractSummaryFromResponse = (transformedMessages) => {
       })),
       { role: "user", content: command },
     ];
-   
+    console.log("Complete Chat: ", Messages);
     const completion = await openai.chat.completions.create({
       messages: Messages,
       model: "gpt-3.5-turbo",
     });
     const JSON_summary = completion.choices[0].message.content;
+    console.log("JSON Summary: ", JSON_summary);
     setSummaryData(JSON_summary);
     
 
@@ -289,7 +293,7 @@ const extractSummaryFromResponse = (transformedMessages) => {
 
 
 
-
+  
   const handleGenerateSummary = async () => {
 
 
@@ -306,8 +310,22 @@ const extractSummaryFromResponse = (transformedMessages) => {
      
     }
   };
+
+
+  // Coverting the response into simple js objects
+  const convertResponseToObject = (responseArray) => {
+    const responseObject = {};
+  
+    for (const [key, value] of Object.entries(responseArray)) {
+      responseObject[key] = value;
+    }
+  
+    return responseObject;
+  };
   
   const sendSummaryToAPI = async (summary) => {
+    const medicalId = new URLSearchParams(location.search).get('unin');
+  console.log(medicalId)
   try {
     const apiEndpoint = "https://api.pamojapanafrica.com/ai_patient_data_insert.php";
 
@@ -319,13 +337,18 @@ const extractSummaryFromResponse = (transformedMessages) => {
 
  
     const requestBody = {
+      mrn: medicalId,
       summary,
+     
     };
 
     
     const response = await axios.post(apiEndpoint, requestBody, { headers });
-
-    // Handle the response as needed
+    
+console.log("Summary sent to database", response.data)
+    
+   
+    
   
   } catch (error) {
     // Handle errors

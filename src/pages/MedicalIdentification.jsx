@@ -29,7 +29,8 @@ const MedicalIdVerification = () => {
         if (data.status === "true") {
           // Patient is verified, navigate to chat page
           setValidMedicalId(medicalId);
-          navigate("/chat");
+          navigate(`/chat?unin=${medicalId}`);
+        
         } else {
           // Patient is not verified, show error message
           setError("Invalid Medical ID. Please try again.");
@@ -45,6 +46,8 @@ const MedicalIdVerification = () => {
   const handleContinue = () => {
     // Call the function to fetch patient_id when the button is clicked
     fetchPatientId();
+     // Navigate to chat page with MRN
+  
   };
 
 
